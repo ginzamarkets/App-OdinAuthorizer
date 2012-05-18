@@ -8,6 +8,14 @@ environments/production.yml
 lib/App/OdinAuthorizer.pm
 public/404.html
 public/500.html
+public/bootstrap/css/bootstrap-responsive.css
+public/bootstrap/css/bootstrap-responsive.min.css
+public/bootstrap/css/bootstrap.css
+public/bootstrap/css/bootstrap.min.css
+public/bootstrap/img/glyphicons-halflings-white.png
+public/bootstrap/img/glyphicons-halflings.png
+public/bootstrap/js/bootstrap.js
+public/bootstrap/js/bootstrap.min.js
 public/css/error.css
 public/css/style.css
 public/dispatch.cgi
@@ -16,7 +24,11 @@ public/favicon.ico
 public/images/perldancer-bg.jpg
 public/images/perldancer.jpg
 public/javascripts/jquery.js
+t/00-load.t
 t/001_base.t
 t/002_index_route.t
+t/manifest.t
+views/denied.tt
 views/index.tt
 views/layouts/main.tt
+views/unauthed.tt
