@@ -29,7 +29,7 @@ sub return_to {
     my $return_to = uri_for('/');
     if ( params->{'ref'} ) {
         my $ref = URI->new(params->{'ref'})->host;
-        my $cookie_domain = setting('godauth')->{'domain'};
+        my $cookie_domain = setting('odin-auth')->{'domain'};
         $ref =~ /\Q$cookie_domain\E$/
             or die "Ref domain $ref not in $cookie_domain\n";
         $return_to->query('ref=' .  params->{'ref'});
@@ -69,26 +69,56 @@ sub verify_openid_response {
     return $1;
 }
 
+sub authed_response {
+    my %args = @_;
+    %args = ( %{setting('template-variables')}, %args );
+
+    if ( params->{'ref'} ) {
+        redirect params->{'ref'};
+    } else {
+        template('index', \%args);
+    }
+
+}
+
 sub process_openid_response {
     eval {
         my $username = verify_openid_response;
         god_authorize(username => $username);
-        if ( params->{'ref'} ) {
-            redirect params->{'ref'};
-        } else {
-            template('index', { username => $username });
-        }
+        authed_response(username => $username, just_logged_in => 1);
     } or template('denied', { reason => $@,
                               try_again_url => return_to });
 }
 
 get '/' => sub {
-    if ( params->{'openid.ns'} ) {
+    if ( my $cookie = cookie(setting('odin-auth')->{'cookie'}) ) {
+        my ( $user, $roles );
+        eval {
+            ( $user, $roles ) =
+                Crypt::OdinAuth::check_cookie(
+                    setting('odin-auth')->{'secret'},
+                    $cookie,
+                    request->header('User-Agent'));
+        };
+        if ( !$@ ) {
+            god_authorize(username => $user);
+            authed_response(username => $user);
+        } else {
+            template('unauthed', { auth_url => get_auth_url, error => $@ });
+        }
+    } elsif ( params->{'openid.ns'} ) {
         process_openid_response;
     } else {
         template('unauthed', { auth_url => get_auth_url });
     }
 };
 
+get '/logout' => sub {
+    cookie( setting('odin-auth')->{'cookie'} => '',
+            domain => setting('odin-auth')->{'domain'},
+            path => '/',
+            expires => 1 );
+    redirect '/';
+};
 
 true;

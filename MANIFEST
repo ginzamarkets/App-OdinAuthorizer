@@ -9,6 +9,7 @@ environments/production.yml
 lib/App/OdinAuthorizer.pm
 public/404.html
 public/500.html
+public/Odhin_by_Johannes_Gehrts.jpg
 public/bootstrap/css/bootstrap-responsive.css
 public/bootstrap/css/bootstrap-responsive.min.css
 public/bootstrap/css/bootstrap.css
@@ -22,9 +23,8 @@ public/css/style.css
 public/dispatch.cgi
 public/dispatch.fcgi
 public/favicon.ico
-public/images/perldancer-bg.jpg
-public/images/perldancer.jpg
-public/javascripts/jquery.js
+public/js/jquery-1.7.2.min.js
+public/js/jquery.js
 t/00-load.t
 t/001_base.t
 t/002_index_route.t

@@ -11,8 +11,13 @@
     <link href="[% request.uri_base %]/bootstrap/css/bootstrap.css" rel="stylesheet">
     <style>
       body {
-        padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+        padding-top: 65px; /* 60px to make the container go all the way to the bottom of the topbar */
       }
+      h1 { text-align: center; }
+      .big-button { text-align: center; padding: 2em 0; }
+      .clear { clear: both; }
+      .larger { font-size: larger; }
+      #odhin { margin-right: 1em; border: 1px solid red; }
     </style>
     <link href="[% request.uri_base %]/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
 
@@ -34,27 +39,40 @@
     <div class="navbar navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container">
-          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-            <span class="icon-bar">X</span>
-            <span class="icon-bar">Y</span>
-            <span class="icon-bar">Z</span>
-          </a>
-          <a class="brand" href="#">Odin Authorizer</a>
+          <a class="brand" href="/">Odin Authorizer</a>
 
-          <div class="nav-collapse">
+          <!-- <div class="nav-collapse">
             <ul class="nav">
               <li class="active"><a href="#">Home</a></li>
               <li><a href="#about">About</a></li>
               <li><a href="#contact">Contact</a></li>
             </ul>
           </div><!--/.nav-collapse -->
+
+          [% IF username %]
+          <ul class="nav pull-right">
+            <li class="dropdown pull-right">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                Logged in: <strong>[% username %]</strong>
+                <b class="caret"></b>
+              </a>
+              <ul class="dropdown-menu">
+                <li><a href="/logout">Log out</a></li>
+              </ul>
+            </li>
+          </ul>
+          [% END %]
         </div>
       </div>
     </div>
 
     <div class="container">
-
-      [% content %]
+      <div class="row">
+        <div class="span6">
+          <img src="/Odhin_by_Johannes_Gehrts.jpg" width="473px">
+        </div>
+        <div class="span6">[% content %]</div>
+      </div>
 
       <hr>
       <footer>
@@ -65,19 +83,8 @@
     <!-- Le javascript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="[% request.uri_base %]/bootstrap/js/jquery.js"></script>
-    <script src="[% request.uri_base %]/bootstrap/js/bootstrap-transition.js"></script>
-    <script src="[% request.uri_base %]/bootstrap/js/bootstrap-alert.js"></script>
-    <script src="[% request.uri_base %]/bootstrap/js/bootstrap-modal.js"></script>
-    <script src="[% request.uri_base %]/bootstrap/js/bootstrap-dropdown.js"></script>
-    <script src="[% request.uri_base %]/bootstrap/js/bootstrap-scrollspy.js"></script>
-    <script src="[% request.uri_base %]/bootstrap/js/bootstrap-tab.js"></script>
-    <script src="[% request.uri_base %]/bootstrap/js/bootstrap-tooltip.js"></script>
-    <script src="[% request.uri_base %]/bootstrap/js/bootstrap-popover.js"></script>
-    <script src="[% request.uri_base %]/bootstrap/js/bootstrap-button.js"></script>
-    <script src="[% request.uri_base %]/bootstrap/js/bootstrap-collapse.js"></script>
-    <script src="[% request.uri_base %]/bootstrap/js/bootstrap-carousel.js"></script>
-    <script src="[% request.uri_base %]/bootstrap/js/bootstrap-typeahead.js"></script>
+    <script src="[% request.uri_base %]/js/jquery-1.7.2.min.js"></script>
+    <script src="[% request.uri_base %]/bootstrap/js/bootstrap.js"></script>
 
   </body>
 </html>

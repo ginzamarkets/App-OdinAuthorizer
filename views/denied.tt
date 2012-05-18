@@ -1,7 +1,9 @@
-<h1>Denied!</h1>
+<h1>Authorization failed!</h1>
 
-<div class="alert alert-block alert-error">
-  [% reason %]
+<div class="alert alert-error alert-block">
+  <button class="close" data-dismiss="alert">×</button>
+  <h3 class="alert-heading">Reason:</h2>
+  <p>[% reason %]</p>
 </div>
 
-<p><a href="[% try_again_url %]" class="btn btn-primary btn-large">Try again?</a></p>
+<p class="big-button"><a href="[% try_again_url %]" class="btn btn-primary btn-large">Try again?</a></p>

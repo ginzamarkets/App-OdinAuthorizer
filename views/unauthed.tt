@@ -1,3 +1,6 @@
-<h1>I don't know you.</h1>
+<h1>I don't know you!</h1>
 
-<p><a class="btn btn-primary btn-large" href="[% auth_url %]" >Authenticate yerself in Google</a></p>
+<div class="big-button">
+  <a class="btn btn-primary btn-large" href="[% auth_url %]">
+    Authenticate on Google Apps
+</a></div>
