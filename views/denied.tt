@@ -1,0 +1,7 @@
+<h1>Denied!</h1>
+
+<div class="alert alert-block alert-error">
+  [% reason %]
+</div>
+
+<p><a href="[% try_again_url %]" class="btn btn-primary btn-large">Try again?</a></p>

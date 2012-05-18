@@ -1,6 +1,7 @@
 Build.PL
 MANIFEST
 MANIFEST.SKIP
+README
 bin/app.pl
 config.yml
 environments/development.yml
