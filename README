@@ -5,12 +5,13 @@ Apache2::Authen::OdinAuth, a cookie-based single sign-on system.
 
 INSTALLATION
 
-To install this module, run the following commands:
+To run this module, run the following commands:
 
 	perl Build.PL
 	./Build
 	./Build test
-	./Build install
+	./Build installdeps
+        ./bin/app.pl
 
 SUPPORT AND DOCUMENTATION
 
