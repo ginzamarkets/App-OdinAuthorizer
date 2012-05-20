@@ -91,7 +91,9 @@ sub process_openid_response {
 }
 
 get '/' => sub {
-    if ( my $cookie = cookie(setting('odin-auth')->{'cookie'}) ) {
+    if ( params->{'openid.ns'} ) {
+        process_openid_response;
+    } elsif ( my $cookie = cookie(setting('odin-auth')->{'cookie'}) ) {
         my ( $user, $roles );
         eval {
             ( $user, $roles ) =
@@ -106,8 +108,6 @@ get '/' => sub {
         } else {
             template('unauthed', { auth_url => get_auth_url, error => $@ });
         }
-    } elsif ( params->{'openid.ns'} ) {
-        process_openid_response;
     } else {
         template('unauthed', { auth_url => get_auth_url });
     }
