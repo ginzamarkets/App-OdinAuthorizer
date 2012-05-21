@@ -6,9 +6,10 @@
 </div>
 [% END %]
 
-<h1>I don't know you!</h1>
+<div class="hero-unit">
+  <h1>I don't know you!</h1>
 
-<div class="big-button">
-  <a class="btn btn-primary btn-large" href="[% auth_url %]">
-    Authenticate on Google Apps
-</a></div>
+  <p class='big-button'><a class="btn btn-primary btn-large" href="[% auth_url %]">
+      Authenticate on Google Apps
+  </a></p>
+</div>
