@@ -1,7 +1,7 @@
 [% IF just_logged_in %]
 <div class="alert alert-success alert-block">
   <button class="close" data-dismiss="alert">×</button>
-  <h4 class="alert-heading">Success!</h2>
+  <h4 class="alert-heading">Success!</h4>
   <p>Successfully authenticated as <b>[% username %]</b>.</p>
 </div>
 [% END %]
