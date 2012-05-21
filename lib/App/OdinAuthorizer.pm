@@ -26,7 +26,7 @@ sub god_authorize {
 }
 
 sub return_to {
-    my $return_to = uri_for('/');
+    my $return_to = uri_for('/oid');
     if ( params->{'ref'} ) {
         my $ref = URI->new(params->{'ref'})->host;
         my $cookie_domain = setting('odin-auth')->{'domain'};
@@ -72,44 +72,37 @@ sub verify_openid_response {
 sub authed_response {
     my %args = @_;
     %args = ( %{setting('template-variables')}, %args );
-
-    if ( params->{'ref'} ) {
-        redirect params->{'ref'};
-    } else {
-        template('index', \%args);
-    }
-
+    redirect( params->{'ref'} || '/' );
 }
 
-sub process_openid_response {
-    eval {
-        my $username = verify_openid_response;
-        god_authorize(username => $username);
-        authed_response(username => $username, just_logged_in => 1);
-    } or template('denied', { reason => $@,
-                              try_again_url => return_to });
+get '/oid' => sub {
+    my $username;
+    
+    if ( params->{'openid.ns'} ) {
+        eval { $username = verify_openid_response; }
+        if ( !$@ ) {
+            god_authorize(username => $username);
+            authed_response(username => $username, just_logged_in => 1);
+        } else {
+            template('denied', { reason => $@, try_again_url => '/' });
+        }
+    }
 }
 
 get '/' => sub {
     if ( my $cookie = cookie(setting('odin-auth')->{'cookie'}) ) {
         my ( $user, $roles );
-        eval {
-            ( $user, $roles ) =
-                Crypt::OdinAuth::check_cookie(
-                    setting('odin-auth')->{'secret'},
-                    $cookie,
-                    request->header('User-Agent'));
-        };
+        eval { ( $user, $roles ) =
+                   Crypt::OdinAuth::check_cookie(
+                       setting('odin-auth')->{'secret'},
+                       $cookie,
+                       request->header('User-Agent')); };
         if ( !$@ ) {
             god_authorize(username => $user);
             authed_response(username => $user);
-        } elsif ( params->{'openid.ns'} ) {
-            process_openid_response;
         } else {
             template('unauthed', { auth_url => get_auth_url, error => $@ });
         }
-    }elsif ( params->{'openid.ns'} ) {
-        process_openid_response;
     } else {
         template('unauthed', { auth_url => get_auth_url });
     }
