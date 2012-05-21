@@ -68,10 +68,10 @@
 
     <div class="container">
       <div class="row">
-        <div class="span6">
+        <div class="span5">
           <img src="/Odhin_by_Johannes_Gehrts.jpg" width="473px">
         </div>
-        <div class="span6">[% content %]</div>
+        <div class="span7">[% content %]</div>
       </div>
 
       <hr>
