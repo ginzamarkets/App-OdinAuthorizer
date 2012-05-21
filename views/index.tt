@@ -18,7 +18,7 @@
 [% IF params.ref %]
 <div class="big-button">
   <a class="btn btn-success btn-large" href="[% params.ref %]">
-    Proceed to <b>[% params.ref %]</b>.
+    Proceed to <b>[% params.ref %]</b>
 </a></div>
 [% END %]
 
