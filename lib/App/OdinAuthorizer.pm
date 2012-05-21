@@ -69,12 +69,6 @@ sub verify_openid_response {
     return $1;
 }
 
-sub authed_response {
-    my %args = @_;
-    %args = ( %{setting('template-variables')}, %args );
-    redirect( params->{'ref'} || '/' );
-}
-
 get '/oid' => sub {
     my $username;
 
@@ -82,7 +76,9 @@ get '/oid' => sub {
         eval { $username = verify_openid_response; };
         if ( !$@ ) {
             god_authorize(username => $username);
-            authed_response(username => $username, just_logged_in => 1);
+            # FIXME: use flash message in session to indicate that
+            # user has just logged in.
+            redirect( params->{'ref'} || '/' );
         } else {
             template('denied', { reason => $@, try_again_url => '/' });
         }
@@ -99,7 +95,8 @@ get '/' => sub {
                        request->header('User-Agent')); };
         if ( !$@ ) {
             god_authorize(username => $user);
-            authed_response(username => $user);
+            template('index', { %{setting('template-variables')},
+                                username => $user });
         } else {
             template('unauthed', { auth_url => get_auth_url, error => $@ });
         }
