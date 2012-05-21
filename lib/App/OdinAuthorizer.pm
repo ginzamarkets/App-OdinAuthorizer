@@ -77,9 +77,9 @@ sub authed_response {
 
 get '/oid' => sub {
     my $username;
-    
+
     if ( params->{'openid.ns'} ) {
-        eval { $username = verify_openid_response; }
+        eval { $username = verify_openid_response; };
         if ( !$@ ) {
             god_authorize(username => $username);
             authed_response(username => $username, just_logged_in => 1);
@@ -87,7 +87,7 @@ get '/oid' => sub {
             template('denied', { reason => $@, try_again_url => '/' });
         }
     }
-}
+};
 
 get '/' => sub {
     if ( my $cookie = cookie(setting('odin-auth')->{'cookie'}) ) {
