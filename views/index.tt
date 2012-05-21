@@ -6,7 +6,21 @@
 </div>
 [% END %]
 
+[% IF params.why %}
+<div class="alert alert-error alert-block">
+  <button class="close" data-dismiss="alert">×</button>
+  <h4 class="alert-heading">[% params.why %]</h4>
+  <p>[% params.reason %]</p>
+</div>
+[% END %]
+
 <h1>Welcome!</h1>
+[% IF params.ref %]
+<div class="big-button">
+  <a class="btn btn-success btn-large" href="[% params.ref %]">
+    Proceed to <b>[% params.ref %]</b>.
+</a></div>
+[% END %]
 
 <ul>
   [% FOREACH link IN links %]
