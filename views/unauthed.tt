@@ -1,3 +1,11 @@
+[% IF error %]
+<div class="alert alert-error alert-block">
+  <button class="close" data-dismiss="alert">×</button>
+  <h4 class="alert-heading">Error:</h4>
+  <p>[% error %]</p>
+</div>
+[% END %]
+
 <h1>I don't know you!</h1>
 
 <div class="big-button">
