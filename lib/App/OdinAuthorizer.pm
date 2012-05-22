@@ -26,7 +26,7 @@ sub odin_authorize {
 }
 
 sub odin_deauthorize {
-  cookie( setting('odin-auth')->{'cookie'} => '---',
+  cookie( setting('odin-auth')->{'cookie'} => '',
           domain => setting('odin-auth')->{'domain'},
           path => '/',
           expires => 0 );
