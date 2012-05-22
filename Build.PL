@@ -15,6 +15,7 @@ my $build = Module::Build->new(
         'Test::More' => 0,
         'YAML' => 0,
 
+        'Clone' => 0,    # https://github.com/sukria/Dancer/issues/253
         'LWP::Protocol::https' => 0,
         'Net::SSLeay' => 0,
         'Net::Google::FederatedLogin' => 0,
