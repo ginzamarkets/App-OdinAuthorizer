@@ -61,7 +61,7 @@
     <div class="container">
       <div class="row">
         <div class="span5">
-          <img src="/Odhin_by_Johannes_Gehrts.jpg" width="473px">
+          <img src="/Odhin.png" width="473px">
         </div>
         <div class="span7">[% content %]</div>
       </div>
@@ -75,7 +75,14 @@
         </[% IF settings.company_url%]a[% ELSE %]strong[% END %]>
         | [% END %]
 
-        Powered by <a href="http://perldancer.org/">Dancer</a> [% dancer_version %]
+        Powered by <a href="http://perldancer.org/">Dancer</a>
+        [% dancer_version %]
+
+        |
+
+        <em>Odhin</em> image in public domain
+        (<a href="http://commons.wikimedia.org/wiki/File:Odhin_by_Johannes_Gehrts.jpg">Wikipedia Commons</a>)
+
       </footer>
     </div> <!-- /container -->
 
