@@ -61,7 +61,7 @@
     <div class="container">
       <div class="row">
         <div class="span5">
-          <img src="/Odhin.png" width="473px">
+          <img src="/Odhin.png">
         </div>
         <div class="span7">[% content %]</div>
       </div>
