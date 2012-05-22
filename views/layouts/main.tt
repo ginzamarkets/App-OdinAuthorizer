@@ -41,18 +41,6 @@
       <div class="navbar-inner">
         <div class="container">
           <a class="brand" href="/">Odin Authorizer</a>
-          [% IF settings.company %]<p class="navbar-text">&mdash;
-            <a href="[% settings.company_url || '/' %]">[% settings.company %]</a>
-          </p>[% END %]
-
-          <!-- <div class="nav-collapse">
-            <ul class="nav">
-              <li class="active"><a href="#">Home</a></li>
-              <li><a href="#about">About</a></li>
-              <li><a href="#contact">Contact</a></li>
-            </ul>
-          </div><!--/.nav-collapse -->
-
           [% IF username %]
           <ul class="nav pull-right">
             <li class="dropdown pull-right">
@@ -80,6 +68,13 @@
 
       <hr>
       <footer>
+        [% IF settings.company %]
+        Running for
+        <[% IF settings.company_url%]a href="[% settings.company_url %]"[% ELSE %]strong[% END %]>
+          [% settings.company %]
+        </[% IF settings.company_url%]a[% ELSE %]strong[% END %]>
+        | [% END %]
+
         Powered by <a href="http://perldancer.org/">Dancer</a> [% dancer_version %]
       </footer>
     </div> <!-- /container -->
