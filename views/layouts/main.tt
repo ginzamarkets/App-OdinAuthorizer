@@ -41,9 +41,9 @@
       <div class="navbar-inner">
         <div class="container">
           <a class="brand" href="/">Odin Authorizer</a>
-          [% IF settings.company %]<div class="nav">&mdash;
+          [% IF settings.company %]<p class="navbar-text">&mdash;
             <a href="[% settings.company_url || '/' %]">[% settings.company %]</a>
-          </div>[% END %]
+          </p>[% END %]
 
           <!-- <div class="nav-collapse">
             <ul class="nav">
