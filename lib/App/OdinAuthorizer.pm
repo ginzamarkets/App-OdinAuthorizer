@@ -7,7 +7,7 @@ use Net::Google::FederatedLogin;
 use URI::Escape;
 use URI;
 
-our $VERSION = '0.1';
+our $VERSION = '0.2';
 
 sub odin_authorize {
   my %args = @_;

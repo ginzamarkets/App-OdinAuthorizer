@@ -1,7 +1,12 @@
-App-OdinAuthorizer -- GodAuth with a hammer
+App-OdinAuthorizer -- Authorization webapp for Apache2::Authen::OdinAuth
 
 This is a Perl Dancer implementation of an authorizer webapp for
-Apache2::Authen::OdinAuth, a cookie-based single sign-on system.
+Apache2::Authen::OdinAuth, a cookie-based single sign-on system. It
+calls back to Google Apps for Domains, and allows users who authorize
+with email of a preconfigured domain.
+
+You can learn more about Odin Authenticator system at
+http://ginzamarkets.github.com/odin_authenticator/.
 
 INSTALLATION
 
@@ -13,12 +18,44 @@ To run this module, run the following commands:
 	./Build installdeps
         ./bin/app.pl
 
+CONFIGURATION
+
+Default values are provided in the config.yml file. For development or
+review, you can stick with the defaults or customize the
+environments/development.yml file. For production, prepare
+environments/production.yml file (you can start based on the
+environments/sample_production.yml example).
+
+To use production settings, pass DANCER_ENVIRONMENT=production
+environment variable to the app.pl script.
+
+PRODUCTION DEPLOYMENT
+
+You don't really want to use ./bin/app.pl directly in production
+settings. Recommended setup is to use Apache with mod_perl and the
+Plack handler. Here is a sample Apache config file:
+
+    <VirtualHost *:80>
+      ServerName i.yourdomain.com
+      DocumentRoot /srv/App-OdinAuthorizer/public
+    
+      SetHandler perl-script
+      PerlHandler Plack::Handler::Apache2
+      PerlSetVar psgi_app /srv/App-OdinAuthorizer/bin/app.pl
+      SetEnv DANCER_ENVIRONMENT "production"
+    
+      <Location ~ "^/(?:[^/]+.(?:html|jpg|png|ico)$|bootstrap/|css/|js/)">
+        SetHandler None
+      </Location>
+    </VirtualHost>
+
 SUPPORT AND DOCUMENTATION
 
-After installing, you can find documentation for this module with the
-perldoc command.
-
-    perldoc App::OdinAuthorizer
+This module is developed at
+https://github.com/ginzamarkets/App-OdinAuthorizer/. The file you are
+reading right now is the main documentation. You can learn more about
+the Odin Authenticator system at
+http://ginzamarkets.github.com/odin_authenticator/.
 
 You can also look for information at:
 
