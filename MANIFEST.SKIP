@@ -13,3 +13,5 @@ Makefile$
 ^.*\.swp$
 ~$
 .gitignore
+^MYMETA\.yml$
+^MYMETA\.json$
