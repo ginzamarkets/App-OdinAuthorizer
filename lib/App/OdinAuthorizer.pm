@@ -102,7 +102,7 @@ get '/' => sub {
                request->header('User-Agent')); };
     if ( !$@ ) {
       odin_authorize(username => $user);
-      template('index', { %{setting('template-variables')},
+      template('index', { %{setting('template-variables') || {}},
                           username => $user });
     } else {
       odin_deauthorize;
