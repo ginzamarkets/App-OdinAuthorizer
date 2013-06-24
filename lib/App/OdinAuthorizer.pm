@@ -22,7 +22,9 @@ sub odin_authorize {
      ),
     domain => $options{'domain'},
     path => '/',
-    expires => $options{'expires'});
+    expires => $options{'expires'},
+    http_only => 1,
+    secure => !!$options{'secure'});
 }
 
 sub odin_deauthorize {
