@@ -41,7 +41,7 @@ sub return_to {
     my $cookie_domain = setting('odin-auth')->{'domain'};
     $ref =~ /\Q$cookie_domain\E$/
       or die "Ref domain $ref not in $cookie_domain\n";
-    $return_to->query('ref=' .  params->{'ref'});
+    $return_to->query('ref=' . params->{'ref'});
   }
   return $return_to->as_string;
 }
@@ -65,7 +65,7 @@ sub get_auth_url {
 
 sub verify_openid_response {
   my $domain = setting('google_apps_domain');
-  my $q = CGI->new();
+  my $q = CGI->new(params);
   my $fl = Net::Google::FederatedLogin->new(  
     cgi => $q,
     return_to => return_to);
