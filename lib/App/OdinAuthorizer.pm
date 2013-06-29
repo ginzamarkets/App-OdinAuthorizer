@@ -1,7 +1,6 @@
 package App::OdinAuthorizer;
 use Dancer ':syntax';
 
-use CGI;
 use Crypt::OdinAuth;
 use Net::Google::FederatedLogin;
 use URI::Escape;
@@ -65,9 +64,8 @@ sub get_auth_url {
 
 sub verify_openid_response {
   my $domain = setting('google_apps_domain');
-  my $q = CGI->new(params);
-  my $fl = Net::Google::FederatedLogin->new(  
-    cgi => $q,
+  my $fl = Net::Google::FederatedLogin->new(
+    cgi => request,
     return_to => return_to);
 
   eval { $fl->verify_auth; } or die "Unauthorized ($@)\n";
