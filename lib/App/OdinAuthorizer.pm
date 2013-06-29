@@ -65,7 +65,7 @@ sub get_auth_url {
 sub verify_openid_response {
   my $domain = setting('google_apps_domain');
   my $fl = Net::Google::FederatedLogin->new(
-    cgi_params => params,
+    cgi_params => scalar params,
     return_to => return_to);
 
   eval { $fl->verify_auth; } or die "Unauthorized ($@)\n";
