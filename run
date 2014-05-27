@@ -1,0 +1,3 @@
+#!/bin/sh
+tpage environments/docker.yml.tt > environments/docker.yml
+exec plackup -E docker -s Starman --workers=${PLACKUP_WORKERS:-10} -p 5001 -a bin/app.pl
