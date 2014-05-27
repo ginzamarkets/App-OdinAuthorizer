@@ -1,9 +1,7 @@
 bin/app.pl
-Build
 Build.PL
 config.yml
 environments/development.yml
-environments/production.yml
 lib/App/OdinAuthorizer.pm
 MANIFEST
 MANIFEST.SKIP
