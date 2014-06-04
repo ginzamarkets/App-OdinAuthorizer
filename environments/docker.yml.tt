@@ -6,12 +6,16 @@ show_errors: 0
 route_cache: 1
 plack_middlewares: [["AccessLog::Timed"]]
 google_apps_domain: [% env.GOOGLE_APPS_DOMAIN or env.DOMAIN %]
+behind_proxy: 1
 odin-auth:
   domain: [% env.COOKIE_DOMAIN or ".${env.DOMAIN}" %]
   secret: [% env.SECRET %]
   roles: [% env.ROLES or 'admin' %]
   cookie: [% env.COOKIE or 'oa' %]
   expires: [% env.EXPIRES or '5 days' %]
+[% IF env.SECURE -%]
+  secure: 1
+[% END -%]
 template-variables:
   links:
 [% FOREACH var IN env.keys.sort -%]
@@ -22,6 +26,6 @@ template-variables:
 [% IF env.COMPANY -%]
 company: "[% env.COMPANY %]"
 [% END -%]
-[% if env.COMPANY_URL -%]
+[% IF env.COMPANY_URL -%]
 company_url: "[% env.COMPANY_URL %]"
 [% END -%]
